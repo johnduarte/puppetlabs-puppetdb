@@ -65,7 +65,11 @@ class puppetdb::params {
   $puppetdb_user        = 'puppetdb'
   $puppetdb_group       = 'puppetdb'
   $confdir              = '/etc/puppetdb/conf.d'
-  $puppet_confdir       = '/etc/puppet'
+  if $settings::confdir != undef {
+    $puppet_confdir       = $settings::confdir
+  } else {
+    $puppet_confdir       = '/etc/puppet'
+  }
   $masterless           = false
   $terminus_package     = 'puppetdb-terminus'
   $ssl_dir              = '/etc/puppetdb/ssl'
